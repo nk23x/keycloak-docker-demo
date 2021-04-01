@@ -10,7 +10,14 @@ workflows:
   welcome:
     # Run the welcome/run job in its own container
     jobs:
-      - welcome/run
+      - welcome/run:
+          pre-steps: 
+          - run:
+             command: echo "this is just a test for gitter webhook"
+          post-steps: 
+            - run:
+                command: echo "the webhook will be executed next"
+
 notify:
   webhooks:
     # A list of hook hashes, containing the url field
